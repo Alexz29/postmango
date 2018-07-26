@@ -1,4 +1,4 @@
-# Mock server for postman mock server
+# Mock server written in Golang that works with postman mock server json file
 
 [![Build Status](https://travis-ci.org/agilov/postmango.svg)](https://travis-ci.org/agilov/postmango)
 
@@ -18,5 +18,12 @@ rm -rf /tmp/postmango-0.0.1-linux-amd64
 ## Usage example
 
 ```bash
-./postmango -f ./path/to/mock/server/file.json -h 8888
+./postmango -f ./path/to/mock/server/file.json -p 8888 -h localhost
 ```
+
+## Params
+-f Path to file with postman exported mock server
+-p Listen on port
+-h Listen on host
+
+By default port is 8080 host - localhost and filename - ./server.json

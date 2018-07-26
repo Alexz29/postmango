@@ -1,5 +1,6 @@
 sudo: false
 language: go
+dist: trusty
 go:
-  - "1.10.3"
+  - "1.6.2"
 script: go test

@@ -1,7 +1,8 @@
-# Mock server written in Golang that works with postman mock server json file
+# Free local mock server for Postman
+
+This is mock server written in Golang that works with postman mock server json file
 
 [![Build Status](https://travis-ci.org/agilov/postmango.svg)](https://travis-ci.org/agilov/postmango)
-
 
 ## Installation
 

@@ -1,4 +1,4 @@
-# Free local mock server for Postman
+# Mock server for Postman
 
 This is mock server written in Golang that works with postman mock server json file
 

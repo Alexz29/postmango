@@ -1,0 +1,137 @@
+{
+  "info": {
+    "_postman_id": "f4ea1dd9-ceb5-4f15-a30c-0bb5fe0a4025",
+    "name": "webhooks mock server",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "success",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{url}}/success"
+      },
+      "response": [
+        {
+          "id": "35d41bfa-8c5f-498f-9621-ebdcef727727",
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{url}}/success"
+          },
+          "code": 200,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\"success\":true}"
+        }
+      ]
+    },
+    {
+      "name": "server-error",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{url}}/server-error"
+      },
+      "response": [
+        {
+          "id": "cec9575c-b9dc-44f4-8ffb-63f508f66b43",
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{url}}/server-error"
+          },
+          "code": 500,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\"success\":false, \"error\":\"Something wrong\"}"
+        }
+      ]
+    },
+    {
+      "name": "not-found",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{url}}/not-found"
+      },
+      "response": [
+        {
+          "id": "0f5db9b7-24b9-41da-a064-7140e57809ca",
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{url}}/not-found"
+          },
+          "code": 404,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\"success\":false, \"error\":\"Not found\"}"
+        }
+      ]
+    },
+    {
+      "name": "forbidden",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": "{{url}}/forbidden"
+      },
+      "response": [
+        {
+          "id": "dcd6ded3-4ed5-4c77-b47a-93d756d59cb4",
+          "name": "Default",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": "{{url}}/forbidden"
+          },
+          "code": 403,
+          "_postman_previewlanguage": null,
+          "header": null,
+          "cookie": [],
+          "body": "{\"success\":false, \"error\":\"Forbidden\"}"
+        }
+      ]
+    }
+  ]
+}

@@ -67,6 +67,7 @@ func main() {
 	file := flag.String("f", "./server.json", "Mock server json file")
 	port := flag.String("p", "8080", "Server port")
 	host := flag.String("h", "localhost", "Server host address")
+	flag.Parse()
 
 	fmt.Println("host:", *host)
 	fmt.Println("port:", *port)

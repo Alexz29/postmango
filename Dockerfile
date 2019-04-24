@@ -1,1 +1,1 @@
-FROM alexz29/postmango
+FROM golang:latest

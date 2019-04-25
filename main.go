@@ -40,6 +40,8 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 
 	uri := r.URL.RequestURI()
 
+	fmt.Println("request:", *uri)
+
 	for _, value := range document.Item {
 		urlClear := strings.Replace(value.Request.Url, "{{url}}", "", 1)
 

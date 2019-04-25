@@ -3,4 +3,4 @@ RUN mkdir /app
 ADD . /app/
 WORKDIR /app
 RUN go build -o main .
-CMD ["/app/main", "-f", "fixtures/fixture.json", "-p", "8888", "-h", "localhost"]
+CMD ["/app/main", "-f", "fixtures/fixture.json", "-p", "6868", "-h", "localhost"]

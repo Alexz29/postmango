@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"strings"
 )
 
@@ -34,18 +35,33 @@ type PostmanDocument struct {
 	Item []PostmanItem
 }
 
+type Param struct {
+	name  string
+	value string
+}
+
+type EmptyQuery struct {
+	Item []Param
+}
+
 var document PostmanDocument
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
-
-	uri := r.URL.RequestURI()
-
+	uri := r.URL.Path
+	if r.URL.RawQuery != "" {
+		uri = r.URL.Path + "?" + cleanParam(r.URL.RawQuery)
+	}
 	fmt.Println("request:", uri)
-
 	for _, value := range document.Item {
 		urlClear := strings.Replace(value.Request.Url, "{{url}}", "", 1)
+		rUrl := cleanParam(url.PathEscape(urlClear))
+		rUrl, err := url.QueryUnescape(rUrl)
 
-		if urlClear == uri {
+		if err != nil {
+			fmt.Println("error:", err)
+		}
+
+		if rUrl == uri {
 			w.WriteHeader(value.Response[0].Code)
 			w.Write([]byte(value.Response[0].Body))
 
@@ -64,11 +80,29 @@ func handleRequest(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Not found"))
 }
 
+func cleanParam(rawQuery string) string {
+
+	array := strings.Split(rawQuery, "&")
+	var s []string
+
+	for _, value := range array {
+		tmpVar := strings.Split(value, "=")
+		if tmpVar[0] != "" {
+			var str = tmpVar[0] + "=null"
+			s = append(s, str)
+		}
+
+	}
+
+	return strings.Join(s, "&")
+}
+
 func main() {
 
-	file := flag.String("f", "./server.json", "Mock server json file")
+	file := flag.String("f", "./fixture.json", "Mock server json file")
 	port := flag.String("p", "8080", "Server port")
 	host := flag.String("h", "localhost", "Server host address")
+
 	flag.Parse()
 
 	fmt.Println("host:", *host)

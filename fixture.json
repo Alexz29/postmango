@@ -14,7 +14,7 @@
           "mode": "raw",
           "raw": ""
         },
-        "url": "{{url}}/success"
+        "url": "{{url}}/success?foo=bar&bar=foo"
       },
       "response": [
         {

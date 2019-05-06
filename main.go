@@ -48,13 +48,27 @@ var document PostmanDocument
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
 	uri := r.URL.Path
+
+	param := true
+
 	if r.URL.RawQuery != "" {
 		uri = r.URL.Path + "?" + cleanParam(r.URL.RawQuery)
+
+	} else {
+		param = false
 	}
-	fmt.Println("request:", uri)
+
 	for _, value := range document.Item {
+
 		urlClear := strings.Replace(value.Request.Url, "{{url}}", "", 1)
-		rUrl := cleanParam(url.PathEscape(urlClear))
+
+		var rUrl string
+		if param == true {
+			rUrl = cleanParam(url.PathEscape(urlClear))
+		} else {
+			rUrl = url.PathEscape(urlClear)
+		}
+
 		rUrl, err := url.QueryUnescape(rUrl)
 
 		if err != nil {
@@ -84,10 +98,10 @@ func cleanParam(rawQuery string) string {
 
 	array := strings.Split(rawQuery, "&")
 	var s []string
-
 	for _, value := range array {
 		tmpVar := strings.Split(value, "=")
-		if tmpVar[0] != "" {
+
+		if len(tmpVar[0]) > 0 {
 			var str = tmpVar[0] + "=null"
 			s = append(s, str)
 		}
